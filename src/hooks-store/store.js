@@ -8,7 +8,7 @@ let listeners =[];
 let actions ={};
 
 // custom hook
-export const useStore =()=>{
+export const useStore =(shouldListen = true )=>{
     // only interested in the function to set the state
     const setState = useState(globalState)[1];
 
@@ -28,12 +28,17 @@ export const useStore =()=>{
 
     // register our listeners
     useEffect(()=>{
-        listeners.push(setState);
+        if(shouldListen){
+            listeners.push(setState);
+        }
         return ()=>{
-            listeners = listeners.filter(li => li !== setState);
+            if(shouldListen){
+                
+                listeners = listeners.filter(li => li !== setState);
+            }
         }
 
-    }, [setState])
+    }, [setState, shouldListen])
 
     // values returned from the custom hook
     return [globalState, dispatch]
