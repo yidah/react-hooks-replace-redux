@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // REDUX
 // import { useDispatch } from 'react-redux';
 
@@ -9,7 +9,12 @@ import './ProductItem.css';
 // import { toggleFav } from '../../store/actions/products';
 
 // CONTEXT
-import { ProductsContext } from '../../context/products-context';
+// import { ProductsContext } from '../../context/products-context';
+// import React, { useContext } from 'react';
+
+//CUSTOM
+import { useStore } from '../../hooks-store/store';
+
 
 const ProductItem = props => {
   
@@ -18,14 +23,23 @@ const ProductItem = props => {
 
   //CONTEXT
   // get the pointer to the toggle function in our context
-  const toggleFav = useContext(ProductsContext).toggleFav;
+  // const toggleFav = useContext(ProductsContext).toggleFav;
+
+  // CUSTOM
+  const dispatch = useStore()[1];
+
 
   const toggleFavHandler = () => {
     //REDUX
     // dispatch(toggleFav(props.id));
 
     // CONTEXT
-    toggleFav(props.id);
+    // toggleFav(props.id);
+
+    //CUSTOM
+    dispatch('TOGGLE_FAV', props.id);
+
+
   };
 
   return (

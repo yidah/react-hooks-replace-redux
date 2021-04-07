@@ -11,7 +11,10 @@ import App from './App';
 // import productReducer from './store/reducers/products';
 
 // CONTEXT
-import ProductsProvider from './context/products-context';
+// import ProductsProvider from './context/products-context';
+
+// CUSTOM 
+import configureProductStore from './hooks-store/products-store';
 
 // REDUX
 // const rootReducer = combineReducers({
@@ -32,11 +35,23 @@ import ProductsProvider from './context/products-context';
 // We can delete the store folder
 
 // CONTEXT
+// ReactDOM.render(
+//   <ProductsProvider >
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </ProductsProvider>,
+//   document.getElementById('root')
+// );
+
+// CUSTOM PROVIDER
+// if you have more stores then you will make a call for each one of them
+configureProductStore();
+// we do not need to wrap it in a provider as we made sure
+// all values are initialized 
 ReactDOM.render(
-  <ProductsProvider >
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </ProductsProvider>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
